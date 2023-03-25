@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+
+source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
+
+antigen use oh-my-zsh
+
+antigen bundles <<EOBUNDLES
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-completions
+  zsh-users/zsh-syntax-highlighting
+  spaceship-prompt/spaceship-prompt
+EOBUNDLES
+
+antigen apply
+
+# Time
+SPACESHIP_TIME_SHOW="true"
+SPACESHIP_TIME_COLOR="255"
+SPACESHIP_TIME_SUFFIX=" • "
+
+# User
+SPACESHIP_USER_SHOW="always"
+SPACESHIP_USER_PREFIX=""
+SPACESHIP_USER_COLOR="004"
+
+# Directory
+SPACESHIP_DIR_TRUNC_PREFIX="../"
+
+# Git
+SPACESHIP_GIT_BRANCH_COLOR="045"
+
+# Order
+SPACESHIP_PROMPT_ORDER=(
+  time
+  user
+  dir
+  host
+  git
+  exec_time
+  line_sep
+  jobs
+  exit_code
+  char
+)

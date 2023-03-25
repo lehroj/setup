@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+
+alias _="sudo"
+
+alias os-hidden-hide="defaults write com.apple.finder AppleShowAllFiles -bool false && refresh"
+alias os-desktop-show="defaults write com.apple.finder CreateDesktop -bool true && refresh"
+alias os-desktop-hide="defaults write com.apple.finder CreateDesktop -bool false && refresh"
+
+alias allo="ping -c 3 www.google.com"
+alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
+alias hosts="sudo e /etc/hosts"
+alias path="echo -e ${PATH//:/\\n}"
+alias reload="exec $SHELL -l"
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
+alias z="source $HOME/.zshrc"
+
+alias git="hub"
+alias g="git"
+
+alias c="composer"
+alias d="docker"
+alias dc="docker-compose"
+alias n="npm"
+alias y="yarn"
+
+alias cat="bat"
+alias cl="clear"
+alias e="$EDITOR"
+alias ex="exit"
+alias f="find"
+alias h="history"
+alias ls="lsd"
+alias lt="lsd --tree"
+alias na="nano"
+alias o="open"
+alias rm="trash"
+alias t="tree"
+
+[ -d ~/Desktop ] && alias _dt="cd $HOME/Desktop"
+[ -d ~/Downloads ] && alias _dl="cd $HOME/Downloads"
+[ -d ~/Projects ] && alias _pj="cd $HOME/Projects"
+[ -d ~/Personal ] && alias _ps="cd $HOME/Personal"
+[ -d ~/Sandbox ] && alias _sb="cd $HOME/Sandbox"
+[ -d ~/Setup ] && alias _st="cd $HOME/Setup"

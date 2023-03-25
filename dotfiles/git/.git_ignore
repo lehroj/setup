@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# logs
+*.log
+
+# npm modules
+.node_modules
+
+# vendor
+vendor
