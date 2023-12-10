@@ -26,8 +26,6 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_VERIFY
 
-export EDITOR="code"
-
 eval "`fnm env --use-on-cd`"
 
 . $HOME/Setup/scripts/my.zsh
