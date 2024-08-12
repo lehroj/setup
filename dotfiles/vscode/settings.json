@@ -1,0 +1,53 @@
+{
+    "editor.accessibilitySupport": "off",
+    "editor.fontFamily": "Fira Code, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveTimeout": 250,
+    "editor.minimap.autohide": true,
+    "editor.mouseWheelZoom": true,
+    "editor.renderWhitespace": "all",
+    "editor.suggestSelection": "first",
+    "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
+    "workbench.iconTheme": "file-icons",
+    "workbench.list.smoothScrolling": true,
+    "workbench.startupEditor": "none",
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.tips.enabled": false,
+    "window.closeWhenEmpty": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "terminal.external.osxExec": "Tabby.app",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "underline",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true
+    },
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/vendor/**": true
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true
+    },
+    "telemetry.enableTelemetry": false,
+    "search.smartCase": true,
+    "extensions.ignoreRecommendations": true,
+    "eslint.alwaysShowStatus": true,
+    "indentRainbow.indicatorStyle": "light",
+    "indentRainbow.lightIndicatorStyleLineWidth": 1,
+    "intelephense.format.enable": false,
+    "prettier.requireConfig": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "github.copilot.editor.enableAutoCompletions": true,
+    "github.copilot.editor.enableCodeActions": false
+}

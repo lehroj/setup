@@ -1,169 +1,145 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-function my()
-{
-    local COMMAND=$1
-    local FLAG=$2
+function my() {
+    source $SETUP/scripts/helpers/tools.zsh
 
-    local SCRIPTS=$HOME/Setup/scripts
+    if [ "$#" -eq 0 ];
+    then
+        show_help
+        return 1
+    fi
 
-    local BACKUPS=("tap" "brew" "cask" "vsc")
-    local DOTFILES=("git" "zsh" "vsc")
+    local command="$1"
+    shift
 
-    local es()
-    {
-      echo "$1" | sed 's/^[[:space:]]*//'
-    }
+    case "$command" in
+        backup)
+            source $SETUP/scripts/helpers/backup.zsh
 
-    local help()
-    {
-      es "
-          Usage:
+            local has_option=false
 
-          my <command> <flag>
+            while [ "$#" -gt 0 ];
+            do
+                case "$1" in
+                    --brew)
+                        backup_brew
+                        has_option=true
+                        ;;
+                    --vscode)
+                        backup_vscode
+                        has_option=true
+                        ;;
+                    --all)
+                        backup_brew
+                        backup_vscode
+                        has_option=true
+                        ;;
+                    *)
+                        msg_error "Unknown option: $1"
+                        show_help
+                        return 1
+                        ;;
+                esac
+                shift
+            done
 
-          Commands:
-
-          backup        make backup
-          install       install from backup
-          dotfiles      symlink dotfiles
-          help          help
-
-          Use -h as <flag> to see availables flags.
-      "
-    }
-
-    local help_backup()
-    {
-      es "
-          Usage:
-
-          my backup <flag>
-
-          Flags:
-
-          -b      backup formulae from Homebrew
-          -c      backup casks from Homebrew
-          -t      backup taps from Homebrew
-          -v      backup extensions from Visual Studio Code
-          -h      help
-      "
-    }
-
-    local help_install()
-    {
-      es "
-          Usage:
-
-          my install <flag>
-
-          Flags:
-
-          -b      install Homebrew formulae from backup
-          -c      install Homebrew casks from backup
-          -t      tap Homebrew taps from backup
-          -v      install Visual Studio Code extensions from backup
-          -h      help
-      "
-    }
-
-    local help_dotfiles()
-    {
-      es "
-          Usage:
-
-          my dotfiles <flag>
-
-          Flags:
-
-          -g      symlink git config
-          -v      symlink Visual Studio Code config
-          -z      symlink Zsh config
-          -h      help
-      "
-    }
-
-    case $COMMAND in
-        "backup")
-          case $FLAG in
-            "-t")
-              source $SCRIPTS/backup/tap.zsh
+            if [ "$has_option" = false ];
+            then
+                backup_brew
+                backup_vscode
+            fi
             ;;
-            "-b")
-              source $SCRIPTS/backup/brew.zsh
+        config)
+            source $SETUP/scripts/helpers/config.zsh
+
+            local has_option=false
+
+            while [ "$#" -gt 0 ];
+            do
+                case "$1" in
+                    --zsh)
+                        config_zsh
+                        has_option=true
+                        ;;
+                    --git)
+                        config_git
+                        has_option=true
+                        ;;
+                    --hyper)
+                        config_hyper
+                        has_option=true
+                        ;;
+                    --vscode)
+                        config_vscode
+                        has_option=true
+                        ;;
+                    --all)
+                        config_zsh
+                        config_git
+                        config_term
+                        config_vscode
+                        has_option=true
+                        ;;
+                    *)
+                        msg_error "Unknown option: $1"
+                        show_help
+                        return 1
+                        ;;
+                esac
+                shift
+            done
+
+            if [ "$has_option" = false ];
+            then
+                config_zsh
+                config_git
+                config_term
+                config_vscode
+            fi
             ;;
-            "-c")
-              source $SCRIPTS/backup/cask.zsh
+        install)
+            source $SETUP/scripts/helpers/install.zsh
+
+            local has_option=false
+
+            while [ "$#" -gt 0 ];
+            do
+                case "$1" in
+                    --brew)
+                        install_brew
+                        has_option=true
+                        ;;
+                    --vscode)
+                        install_vscode
+                        has_option=true
+                        ;;
+                    --all)
+                        install_brew
+                        install_vscode
+                        has_option=true
+                        ;;
+                    *)
+                        msg_error "Unknown option: $1"
+                        show_help
+                        return 1
+                        ;;
+                esac
+                shift
+            done
+
+            if [ "$has_option" = false ];
+            then
+                install_brew
+                install_vscode
+            fi
             ;;
-            "-v")
-              source $SCRIPTS/backup/vsc.zsh
+        help)
+            show_help
             ;;
-            "-h")
-              help_backup
-            ;;
-            "")
-              for FILE in ${BACKUPS[@]}; do
-                source $SCRIPTS/backup/$FILE.zsh
-              done
-            ;;
-            *)
-              help_backup
-            ;;
-          esac
-        ;;
-        "install")
-          case $FLAG in
-            "-t")
-              source $SCRIPTS/install/tap.zsh
-            ;;
-            "-b")
-              source $SCRIPTS/install/brew.zsh
-            ;;
-            "-c")
-              source $SCRIPTS/install/cask.zsh
-            ;;
-            "-v")
-              source $SCRIPTS/install/vsc.zsh
-            ;;
-            "-h")
-              help_install
-            ;;
-            "")
-              for FILE in ${BACKUPS[@]}; do
-                source $SCRIPTS/install/$FILE.zsh
-              done
-            ;;
-            *)
-              help_install
-            ;;
-          esac
-        ;;
-        "dotfiles")
-          case $FLAG in
-            "-g")
-              source $SCRIPTS/dotfiles/git.zsh
-            ;;
-            "-v")
-              source $SCRIPTS/dotfiles/vsc.zsh
-            ;;
-            "-z")
-              source $SCRIPTS/dotfiles/zsh.zsh
-            ;;
-            "-h")
-              help_dotfiles
-            ;;
-            "")
-              for FILE in ${DOTFILES[@]}; do
-                source $SCRIPTS/dotfiles/$FILE.zsh
-              done
-            ;;
-            *)
-              help_dotfiles
-            ;;
-          esac
-        ;;
         *)
-          help
-        ;;
+            msg_error "Unknown command: $command"
+            show_help
+            return 1
+            ;;
     esac
 }

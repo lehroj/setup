@@ -1,33 +1,52 @@
 #!/usr/bin/env zsh
 
+# Clear screen on start
 clear
 
+# Locale settings
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-export LANGUAGE="en_US.UTF-8"
 
-export GPG_TTY=$(tty)
+# History settings
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 
-setopt NO_BEEP
+setopt appendhistory
+setopt inc_append_history
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt extended_history
 
-DISABLE_AUTO_UPDATE="true"
+# Enable automatic changing of directory
+setopt auto_cd
 
+# Case sensitive
 CASE_SENSITIVE="true"
 
-HISTFILE=$HOME/.zsh_history
-HISTSIZE="10000"
-SAVEHIST="10000"
+# No beep
+setopt nobeep
 
-setopt APPEND_HISTORY
-setopt EXTENDED_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_VERIFY
+# Editor settings
+export EDITOR='nano'
+export VISUAL='nano'
+export GIT_EDITOR='nano'
 
-. $HOME/Setup/scripts/my.zsh
+# GPG settings
+export GPG_TTY=$(tty)
 
-. $HOME/.zsh_plugins
-. $HOME/.zsh_aliases
-. $HOME/.zsh_utils
+# Setup
+SETUP=$HOME/.setup
+
+source $SETUP/scripts/my.zsh
+source $HOME/.zsh_aliases
+source $HOME/.zsh_antidote
+
+eval "$(starship init zsh)"
+
+# FNM
+eval "$(fnm env --use-on-cd)"

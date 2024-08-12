@@ -1,14 +1,12 @@
 # 💻 Setup
 
-> Personal dotfiles, use at your own risk!
+> Personal macOS setup, use at your own risk!
 
 ## First run
 
 Get your apps from the App Store.
 
 ```bash
-export SETUP="$HOME/Setup"
-
 # ZSH as default shell
 chsh -s /bin/zsh $USER
 
@@ -16,42 +14,51 @@ chsh -s /bin/zsh $USER
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Setup
+export SETUP="$HOME/.setup"
+
 git clone https://github.com/lehroj/setup.git $SETUP
+
 source $SETUP/scripts/my.zsh
 
 # Install libs & apps
 my install
 # or separately
-my install -t
-my install -b
-my install -c
-my install -v
+my install --brew
+my install --vscode
 # I suggest you check each step went correctly.
 
 # SSH key
-ssh-keygen -t rsa -b 4096 -C YOUR_EMAIL
+ssh-keygen -t ed25519 -C YOUR_EMAIL
 cat $HOME/.ssh/YOUR_KEY.pub | pbcopy
 # Paste it on GitHub/GitLab/Bitbucket...
 
 # GPG key
-gpg --default-new-key-algo rsa4096 --gen-key
+gpg --full-generate-key
 gpg --list-secret-keys --keyid-format LONG
 gpg --armor --export GPG_KEY_ID | pbcopy
 # Paste it on GitHub/GitLab/Bitbucket...
 
-# Create your .git_perso in ~/Setup/dotfiles/git/.git_perso
+# Add this to your ~/.gnupg/gpg-agent.conf
+# pinentry-program /opt/homebrew/bin/pinentry-mac
+
+# Restart GPG agent
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
+
+# Create your .git_perso in $SETUP/dotfiles/git/.git_perso
 # For example :
 [user]
   name = XXX
   email = XXX
   signinkey = GPG_KEY_ID
 
-# Symlink dotfiles
-my dotfiles
+# Symlink configurations
+my config
 # or separately
-my dotfiles -g
-my dotfiles -v
-my dotfiles -z
+my config --zsh
+my config --git
+my config --term
+my config --vscode
 # I suggest you check each step went correctly.
 
 # ZSH configuration
@@ -76,15 +83,12 @@ rm -rf "$(brew --cache)"
 # Backup
 my backup
 # or separately
-my backup -t
-my backup -b
-my backup -ck
-my backup -v
+my backup --brew
+my backup --vscode
 # I suggest you check each step went correctly.
 
-# Antigen
-antigen update
-antigen cleanup
+# Antidote
+antidote update
 ```
 
 ## 🙌 Contribute

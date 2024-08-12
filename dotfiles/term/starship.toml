@@ -1,0 +1,9 @@
+# Starship config
+
+[directory]
+truncation_symbol = '…/'
+
+[username]
+disabled = false
+style_user = 'white bold'
+show_always = true

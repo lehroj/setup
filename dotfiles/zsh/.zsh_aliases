@@ -1,40 +1,60 @@
 #!/usr/bin/env zsh
 
+# shortcuts
 alias _="sudo"
-
-alias git="hub"
-
-alias dd="docker"
-alias dc="docker-compose"
-alias ld="lazydocker"
-
 alias cat="bat"
-alias cl="clear"
-alias ex="exit"
-alias fd="find"
-alias ht="history"
+alias hist="history"
 alias ls="lsd"
-alias lt="lsd --tree"
-alias na="nano"
-alias op="open"
+alias lst="lsd --tree"
+alias o="open"
+alias n="nano"
+alias v="vim"
 alias rm="trash"
 alias tr="tree"
 
-alias os-hidden-hide="defaults write com.apple.finder AppleShowAllFiles -bool false && refresh"
-alias os-desktop-show="defaults write com.apple.finder CreateDesktop -bool true && refresh"
-alias os-desktop-hide="defaults write com.apple.finder CreateDesktop -bool false && refresh"
+# dev
+alias g="git"
+alias cps="composer"
+alias vl="valet"
+alias dc="docker"
+alias dcc="docker-compose"
+alias ldc="lazydocker"
 
+# network
 alias allo="ping -c 3 www.google.com"
-alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
+alias flush_dns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+alias public_ip='curl ifconfig.me; echo'
+alias local_ip='ipconfig getifaddr en0'
 alias hosts="sudo nano /etc/hosts"
-alias path="echo -e ${PATH//:/\\n}"
+
+# ssh
+alias sshconfig="nano ~/.ssh/config"
+
+# shell
 alias reload="exec $SHELL -l"
-alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
 alias zz="source $HOME/.zshrc"
 
-[ -d ~/Desktop ] && alias _dt="cd $HOME/Desktop"
-[ -d ~/Downloads ] && alias _dl="cd $HOME/Downloads"
-[ -d ~/Projects ] && alias _pj="cd $HOME/Projects"
-[ -d ~/Personal ] && alias _ps="cd $HOME/Personal"
-[ -d ~/Sandbox ] && alias _sb="cd $HOME/Sandbox"
-[ -d ~/Setup ] && alias _st="cd $HOME/Setup"
+# helpers
+alias mkdir="mkdir -pv"
+alias path="echo -e ${PATH//:/\\n}"
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
+
+# system
+alias show_hidden="defaults write com.apple.finder AppleShowAllFiles -bool true && kill_finder"
+alias hide_hidden="defaults write com.apple.finder AppleShowAllFiles -bool false && kill_finder"
+alias show_desktop="defaults write com.apple.finder CreateDesktop -bool true && kill_finder"
+alias hide_desktop="defaults write com.apple.finder CreateDesktop -bool false && kill_finder"
+alias kill_bar="killall SystemUIServer"
+alias kill_dock="killall Dock"
+alias kill_finder="killall Finder"
+alias update='sudo softwareupdate -i -a'
+alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+alias sleepnow='pmset sleepnow'
+alias reboot='sudo shutdown -r now'
+alias shutdown='sudo shutdown -h now'
+
+# dirs
+[ -d $HOME/Desktop ] && alias desk="cd $HOME/Desktop"
+[ -d $HOME/Personal ] && alias perso="cd $HOME/Personal"
+[ -d $HOME/Projects ] && alias projects="cd $HOME/Projects"
+[ -d $HOME/Sandbox ] && alias sandbox="cd $HOME/Sandbox"

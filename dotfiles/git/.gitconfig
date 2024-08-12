@@ -1,28 +1,35 @@
+[core]
+  autocrlf = input
+  editor = vim
+  excludesfile = ~/.git_ignore
+  fscache = true
+  packedGitLimit = 128m
+  packedGitWindowSize = 128m
+  preloadindex = true
+  trustctime = false
+  untrackedCache = true
+
 [include]
   path = ~/.git_aliases
   path = ~/.git_perso
 
-[credential]
-  helper = osxkeychain
+[color]
+  ui = auto
+
+[init]
+  defaultBranch = main
 
 [gpg]
   program = /opt/homebrew/bin/gpg
 
-[core]
-  excludesfile = ~/.git_ignore
-  autocrlf = input
-  editor = vim
-  trustctime = false
-  untrackedCache = true
+[commit]
+  gpgsign = true
 
-[color]
-  ui = auto
+[status]
+  short = true
 
 [branch]
   autosetuprebase = always
-
-[commit]
-  gpgsign = true
 
 [diff]
   tool = vscode
@@ -32,12 +39,6 @@
 
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
-
-[fetch]
-  prune = true
-
-[init]
-	defaultBranch = main
 
 [merge]
   log = true
@@ -49,6 +50,9 @@
 [mergetool "vscode"]
   cmd = code --wait $MERGED
 
+[fetch]
+  prune = true
+
 [pull]
   rebase = true
 
@@ -58,6 +62,3 @@
 
 [rebase]
   autosquash = true
-
-[status]
-  short = true
