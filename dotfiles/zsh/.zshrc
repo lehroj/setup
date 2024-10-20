@@ -43,8 +43,12 @@ export GPG_TTY=$(tty)
 SETUP=$HOME/.setup
 
 source $SETUP/scripts/my.zsh
-source $HOME/.zsh_aliases
 source $HOME/.zsh_antidote
+source $HOME/.zsh_aliases
+
+if [[ -f $HOME/.zsh_local ]]; then
+    source $HOME/.zsh_local
+fi
 
 eval "$(starship init zsh)"
 

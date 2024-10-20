@@ -1,6 +1,6 @@
 {
     "editor.accessibilitySupport": "off",
-    "editor.fontFamily": "Fira Code, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "GeistMono Nerd Font, Monaco, 'Courier New', monospace",
     "editor.fontSize": 14,
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": "active",
@@ -11,7 +11,7 @@
     "editor.mouseWheelZoom": true,
     "editor.renderWhitespace": "all",
     "editor.suggestSelection": "first",
-    "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
+    "workbench.colorTheme": "GitHub Dark Default",
     "workbench.iconTheme": "file-icons",
     "workbench.list.smoothScrolling": true,
     "workbench.startupEditor": "none",

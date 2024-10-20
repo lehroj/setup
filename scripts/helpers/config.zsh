@@ -40,7 +40,6 @@ function config_git()
     local TARGET_DIR=$HOME
 
     echo
-    msg_info "Creating symlinks for Git config files..."
 
     if [[ ! -d "$CONFIG_DIR" ]];
     then
@@ -63,12 +62,11 @@ function config_git()
 function config_term()
 {
     local HYPER_CONFIG=$SETUP/dotfiles/term/hyper.js
-    local HYPER_TARGET=$HOME/Library/Application\ Support/Hyper/.hyper.js
+    local HYPER_TARGET=$HOME/.hyper.js
     local STARSHIP_CONFIG=$SETUP/dotfiles/term/starship.toml
     local STARSHIP_TARGET=$HOME/.config/starship.toml
 
     echo
-    msg_info "Creating symlinks for terminal config files..."
 
     if [[ ! -f "$HYPER_CONFIG" ]];
     then
@@ -93,7 +91,6 @@ function config_vscode()
     local TARGET_DIR=$HOME/Library/Application\ Support/Code/User
 
     echo
-    msg_info "Creating symlinks for VSCode config files..."
 
     if [[ ! -d "$CONFIG_DIR" ]];
     then
@@ -119,7 +116,6 @@ function config_zsh()
     local TARGET_DIR=$HOME
 
     echo
-    msg_info "Creating symlinks for Zsh config files..."
 
     if [[ ! -d "$CONFIG_DIR" ]];
     then

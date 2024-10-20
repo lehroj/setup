@@ -1,5 +1,4 @@
 [alias]
-  la = "!git config -l | grep alias | cut -c 7-"
   a = add
   aa = add -A .
   br = branch
@@ -14,6 +13,7 @@
   d = diff
   ds = diff --stat
   dc = diff --cached
+  la = "!git config -l | grep alias | cut -c 7-"
   lg = log --oneline --graph --decorate --all
   lga = log --oneline --graph --decorate --all --color
   m = merge

@@ -1,5 +1,7 @@
 # Starship config
 
+command_timeout = 1000
+
 [directory]
 truncation_symbol = '…/'
 

@@ -62,7 +62,7 @@ my config --vscode
 # I suggest you check each step went correctly.
 
 # ZSH configuration
-. $HOME/.zshrc
+source $HOME/.zshrc
 
 # Shell reload
 exec $SHELL -l
