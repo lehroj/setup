@@ -3,7 +3,6 @@ aom
 apr
 apr-util
 argon2
-aspell
 autoconf
 bat
 brotli
@@ -27,15 +26,16 @@ gettext
 gh
 giflib
 git
+git-flow-avh
 git-lfs
 gmp
+gnu-getopt
 gnupg
 gnutls
 go
 highway
 httpie
-icu4c
-icu4c@75
+icu4c@76
 imath
 iproute2mac
 jpeg-turbo
@@ -74,6 +74,7 @@ m4
 mkcert
 mpdecimal
 ncurses
+net-snmp
 nettle
 nginx
 node
@@ -92,6 +93,7 @@ pinentry
 pinentry-mac
 python-certifi
 python@3.12
+python@3.13
 readline
 rtmpdump
 ruby
