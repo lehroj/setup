@@ -48,9 +48,6 @@ gpg --list-secret-keys --keyid-format LONG
 gpg --armor --export GPG_KEY_ID | pbcopy
 # Paste it on GitHub/GitLab/Bitbucket...
 
-# Add this to your ~/.gnupg/gpg-agent.conf
-# pinentry-program /opt/homebrew/bin/pinentry-mac
-
 # Restart GPG agent
 gpgconf --kill gpg-agent
 gpgconf --launch gpg-agent

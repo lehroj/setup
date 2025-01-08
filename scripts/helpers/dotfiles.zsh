@@ -24,12 +24,14 @@ GIT_TARGETS=(
 # Misc mapping
 MISC_SOURCES=(
     "$DOTFILES_DIR/misc/ghostty-config"
+    "$DOTFILES_DIR/misc/gpg-agent.conf"
     "$DOTFILES_DIR/misc/starship.toml"
     "$DOTFILES_DIR/misc/vscode-settings.json"
 )
 
 MISC_TARGETS=(
     "$HOME/.config/ghostty/config"
+    "$HOME/.gnupg/gpg-agent.conf"
     "$HOME/.config/starship.toml"
     "$HOME/Library/Application Support/Code/User/settings.json"
 )
