@@ -9,6 +9,7 @@ brotli
 c-ares
 ca-certificates
 certifi
+coreutils
 curl
 dnsmasq
 docker
@@ -17,6 +18,7 @@ docker-compose
 docker-credential-helper
 docker-mac-net-connect
 fd
+findutils
 fnm
 fontconfig
 freetds
@@ -49,6 +51,7 @@ libdeflate
 libevent
 libgcrypt
 libgit2@1.7
+libgit2@1.8
 libgpg-error
 libidn2
 libksba
@@ -72,6 +75,7 @@ lua
 lz4
 m4
 mkcert
+moreutils
 mpdecimal
 ncurses
 net-snmp

@@ -1,32 +1,63 @@
 [alias]
+  # Add changes to the staging area.
   a = add
+  # Add all changes, including untracked files, to the staging area.
   aa = add -A .
+  # List branches.
   br = branch
+  # Delete a branch by force.
   brd = branch -D
-  c = commit
-  cm = commit -m
-  ca = commit --amend
-  cam = commit --amend -m
+  # Create a commit.
+  cm = commit
+  # Create a commit with a message.
+  cmm = commit -m
+  # Amend the last commit.
+  cma = commit --amend
+  # Amend the last commit with a new message.
+  cmam = commit --amend -m
+  # Clone a repository.
   cl = clone
+  # Checkout a branch or commit.
   co = checkout
+  # Create and switch to a new branch.
   cob = checkout -b
-  d = diff
-  ds = diff --stat
-  dc = diff --cached
+  # Show differences between the working directory and the index.
+  df = diff
+  # Show a summary of changes.
+  dfs = diff --stat
+  # Show differences for staged changes.
+  dfc = diff --cached
+  # List all configured aliases.
   la = "!git config -l | grep alias | cut -c 7-"
-  lg = log --oneline --graph --decorate --all
-  lga = log --oneline --graph --decorate --all --color
-  m = merge
+  # Show a one-line log with a graph, decorations, and all branches.
+  lga = log --oneline --graph --decorate --all
+  # Same as `lga` but with color enabled.
+  lgac = log --oneline --graph --decorate --all --color
+  # Merge branches.
+  mg = merge
+  # Pull changes from the remote repository.
   pl = pull
+  # Push changes to the remote repository.
   ps = push
+  # Force push changes to the remote repository.
   psf = push --force
+  # Rebase branches.
   rb = rebase
+  # Abort an ongoing rebase.
   rba = rebase --abort
+  # Continue an ongoing rebase after resolving conflicts.
   rbc = rebase --continue
+  # Skip the current commit during a rebase.
   rbs = rebase --skip
-  r  = remote
+  # Manage remote repositories.
+  rm = remote
+  # Reset changes in the working directory.
   re = reset
+  # Show the current status of the repository.
   st = status
+  # Show the status in short format.
   sts = status -s
+  # Save changes to the stash.
   ss = stash
+  # Save changes to the stash, including untracked files.
   ssu = stash -u

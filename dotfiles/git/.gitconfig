@@ -1,64 +1,101 @@
 [core]
+  # Automatically adjust line endings to match Unix style on commit (useful for cross-platform).
   autocrlf = input
-  editor = vim
+  # Set the default editor for Git commands, like commit messages.
+  editor = nano
+  # Specify the global ignore file for Git (applies to all repos).
   excludesfile = ~/.git_ignore
+  # Enable file system caching to speed up file lookups.
   fscache = true
+  # Set memory limits for packed Git objects.
   packedGitLimit = 128m
   packedGitWindowSize = 128m
+  # Enable index preload for faster Git status.
   preloadindex = true
+  # Ignore changes in file timestamps if the content hasn't changed.
   trustctime = false
+  # Cache information about untracked files for better performance.
   untrackedCache = true
 
 [include]
+  # Alias definitions.
   path = ~/.git_aliases
-  path = ~/.git_perso
+  # Local user-specific settings.
+  path = ~/.git_local
 
 [color]
+  # Enable colored output in Git commands.
   ui = auto
 
 [init]
+  # Set the default branch name to "main" when initializing new repositories.
   defaultBranch = main
 
 [gpg]
+  # Path to the GPG program used for signing commits and tags.
   program = /opt/homebrew/bin/gpg
 
-[commit]
-  gpgsign = true
-
 [status]
+  # Use the short format for `git status` output.
   short = true
+  # Display the stash count in `git status`.
+  showStash = true
 
 [branch]
+  # Automatically set up `git pull` to rebase by default.
   autosetuprebase = always
 
+[commit]
+  # Enable GPG signing for all commits.
+  gpgsign = true
+
 [diff]
+  # Set the default diff tool.
   tool = vscode
 
 [difftool]
+  # Disable prompts when running the diff tool.
   prompt = false
 
 [difftool "vscode"]
+  # Command to launch the Visual Studio Code diff tool.
   cmd = code --wait --diff $LOCAL $REMOTE
 
+[fetch]
+  # Automatically prune remote-tracking branches that no longer exist.
+  prune = true
+  # Also prune obsolete remote tags.
+  pruneTags = true
+
 [merge]
+  # Display a log of commits when merging.
   log = true
+  # Set the default merge tool.
   tool = vscode
 
 [mergetool]
+  # Disable prompts when running the merge tool.
   prompt = false
 
 [mergetool "vscode"]
+  # Command to launch the Visual Studio Code merge tool.
   cmd = code --wait $MERGED
 
-[fetch]
-  prune = true
-
 [pull]
+  # Use rebase instead of merge when pulling changes.
   rebase = true
 
 [push]
+  # Push only the current branch by default.
   default = current
+
+  # Push annotated tags that are reachable from the branch being pushed.
   followTags = true
 
 [rebase]
+  # Automatically re-arrange fixup and squash commits during rebase.
   autosquash = true
+
+[tag]
+  # Enable GPG signing for all tags.
+  gpgSign = true

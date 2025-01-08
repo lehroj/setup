@@ -1,2 +1,11 @@
-# Personal git config
+# Local git config
+dotfiles/git/.git_local
+
+# Perso git config
 dotfiles/git/.git_perso
+
+# Work git config
+dotfiles/git/.git_work
+
+# Personal zsh config
+dotfiles/zsh/.zsh_local

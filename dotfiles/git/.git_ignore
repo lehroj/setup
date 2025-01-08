@@ -1,4 +1,4 @@
-# macOS
+# Ignore macOS system files.
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -18,10 +18,10 @@ Temporary Items
 .apdisk
 *.icloud
 
-# editors
+# Ignore IDE configuration files.
 .idea
 .vscode
 
-# dependencies
+# Ignore dependency directories.
 node_modules
 vendor

@@ -1,7 +1,7 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function my() {
-    source $SETUP/scripts/helpers/tools.zsh
+    source $SETUP/scripts/helpers/util.zsh
 
     if [ "$#" -eq 0 ];
     then
@@ -13,6 +13,48 @@ function my() {
     shift
 
     case "$command" in
+        dotfiles)
+            source $SETUP/scripts/helpers/dotfiles.zsh
+
+            local has_option=false
+
+            while [ "$#" -gt 0 ];
+            do
+                case "$1" in
+                    --git)
+                        dotfiles_git
+                        has_option=true
+                        ;;
+                    --misc)
+                        dotfiles_misc
+                        has_option=true
+                        ;;
+                    --zsh)
+                        dotfiles_zsh
+                        has_option=true
+                        ;;
+                    --all)
+                        dotfiles_git
+                        dotfiles_misc
+                        dotfiles_zsh
+                        has_option=true
+                        ;;
+                    *)
+                        msg_error "Unknown option: $1"
+                        show_help
+                        return 1
+                        ;;
+                esac
+                shift
+            done
+
+            if [ "$has_option" = false ];
+            then
+                dotfiles_git
+                dotfiles_misc
+                dotfiles_zsh
+            fi
+            ;;
         backup)
             source $SETUP/scripts/helpers/backup.zsh
 
@@ -25,13 +67,13 @@ function my() {
                         backup_brew
                         has_option=true
                         ;;
-                    --vscode)
-                        backup_vscode
+                    --vsc)
+                        backup_vsc
                         has_option=true
                         ;;
                     --all)
                         backup_brew
-                        backup_vscode
+                        backup_vsc
                         has_option=true
                         ;;
                     *)
@@ -46,55 +88,7 @@ function my() {
             if [ "$has_option" = false ];
             then
                 backup_brew
-                backup_vscode
-            fi
-            ;;
-        config)
-            source $SETUP/scripts/helpers/config.zsh
-
-            local has_option=false
-
-            while [ "$#" -gt 0 ];
-            do
-                case "$1" in
-                    --zsh)
-                        config_zsh
-                        has_option=true
-                        ;;
-                    --git)
-                        config_git
-                        has_option=true
-                        ;;
-                    --hyper)
-                        config_hyper
-                        has_option=true
-                        ;;
-                    --vscode)
-                        config_vscode
-                        has_option=true
-                        ;;
-                    --all)
-                        config_zsh
-                        config_git
-                        config_term
-                        config_vscode
-                        has_option=true
-                        ;;
-                    *)
-                        msg_error "Unknown option: $1"
-                        show_help
-                        return 1
-                        ;;
-                esac
-                shift
-            done
-
-            if [ "$has_option" = false ];
-            then
-                config_zsh
-                config_git
-                config_term
-                config_vscode
+                backup_vsc
             fi
             ;;
         install)
@@ -109,13 +103,13 @@ function my() {
                         install_brew
                         has_option=true
                         ;;
-                    --vscode)
-                        install_vscode
+                    --vsc)
+                        install_vsc
                         has_option=true
                         ;;
                     --all)
                         install_brew
-                        install_vscode
+                        install_vsc
                         has_option=true
                         ;;
                     *)
@@ -130,7 +124,7 @@ function my() {
             if [ "$has_option" = false ];
             then
                 install_brew
-                install_vscode
+                install_vsc
             fi
             ;;
         help)

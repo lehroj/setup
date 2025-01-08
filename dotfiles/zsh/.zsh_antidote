@@ -1,10 +1,19 @@
 #!/usr/bin/env zsh
 
+# Load the Antidote plugin manager.
 source $HOMEBREW_PREFIX/share/antidote/antidote.zsh
 
+# Initialize Antidote to prepare for loading bundles.
 source <(antidote init)
 
+# zsh-autosuggestions: Provides command-line suggestions based on history.
 antidote bundle zsh-users/zsh-autosuggestions
+
+# zsh-completions: Adds a variety of command-line completions for tools.
 antidote bundle zsh-users/zsh-completions
+
+# zsh-syntax-highlighting: Highlights commands and syntax as you type.
 antidote bundle zsh-users/zsh-syntax-highlighting
+
+# zsh-you-should-use: Suggests commonly used aliases and commands.
 antidote bundle MichaelAquilina/zsh-you-should-use

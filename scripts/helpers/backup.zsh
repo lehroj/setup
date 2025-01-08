@@ -1,59 +1,59 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
+
+BACKUP_DIR="$SETUP/backup"
 
 function ensure_backup_dir()
 {
-    local BACKUP_DIR=$SETUP/backup
-
     if [[ ! -d "$BACKUP_DIR" ]];
     then
         mkdir -p "$BACKUP_DIR"
     fi
 }
 
-function backup_brew()
-{
-    local BACKUP_DIR=$SETUP/backup
-    local TAPS_FILE=$BACKUP_DIR/brew_taps.save
-    local FORMULAE_FILE=$BACKUP_DIR/brew_formulae.save
-    local CASKS_FILE=$BACKUP_DIR/brew_casks.save
-
+function backup_brew() {
     ensure_backup_dir
 
-    if command -v "brew" >/dev/null 2>&1;
-    then
-        echo
-        msg_info "Backing up Brew taps..."
-        brew tap > "$TAPS_FILE"
-        msg_success "Brew taps saved to $TAPS_FILE"
+    local CASKS_FILE="$BACKUP_DIR/brew_casks.bak"
+    local FORMULAE_FILE="$BACKUP_DIR/brew_formulae.bak"
+    local TAPS_FILE="$BACKUP_DIR/brew_taps.bak"
 
-        echo
-        msg_info "Backing up Brew formulae..."
-        brew list --formula > "$FORMULAE_FILE"
-        msg_success "Brew formulae saved to $FORMULAE_FILE"
+    echo
 
-        echo
-        msg_info "Backing up Brew casks..."
-        brew list --cask > "$CASKS_FILE"
-        msg_success "Brew casks saved to $CASKS_FILE"
-    else
-        msg_error "Error: Brew is not installed."
+    if ! command -v brew >/dev/null 2>&1; then
+        msg_error "Homebrew not found. Skipping Homebrew backup."
+        return
     fi
+
+    msg_info "Backing up Homebrew casks to $CASKS_FILE..."
+    brew list --cask > "$CASKS_FILE"
+    msg_success "Homebrew casks backed up successfully."
+
+    echo
+
+    msg_info "Backing up Homebrew formulae to $FORMULAE_FILE..."
+    brew list --formula > "$FORMULAE_FILE"
+    msg_success "Homebrew formulae backed up successfully."
+
+    echo
+
+    msg_info "Backing up Homebrew taps to $TAPS_FILE..."
+    brew tap > "$TAPS_FILE"
+    msg_success "Homebrew taps backed up successfully."
 }
 
-function backup_vscode()
-{
-    local BACKUP_DIR=$SETUP/backup
-    local VSC_FILE=$BACKUP_DIR/vscode-extensions.save
-
+function backup_vsc() {
     ensure_backup_dir
 
-    if command -v "code" >/dev/null 2>&1;
-    then
-        echo
-        msg_info "Backing up VSCode extensions..."
-        code --list-extensions > "$VSC_FILE"
-        msg_success "VSCode extensions saved to $VSC_FILE"
-    else
-        msg_error "Error: VSCode is not installed."
+    local VSC_FILE="$BACKUP_DIR/vscode_extensions.bak"
+
+    echo
+
+    if ! command -v code >/dev/null 2>&1; then
+        msg_error "VS Code CLI not found. Skipping VS Code extensions backup."
+        return
     fi
+
+    msg_info "Backing up VS Code extensions to $VSC_FILE..."
+    code --list-extensions > "$VSC_FILE"
+    msg_success "VS Code extensions backed up successfully."
 }

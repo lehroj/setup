@@ -1,56 +1,111 @@
 #!/usr/bin/env zsh
 
-# shortcuts
+#####################################################################################
+# Shell
+#####################################################################################
+
+# Create a shortcut for sudo.
 alias plz="sudo"
-alias cat="bat"
-alias hist="history"
-alias ls="lsd"
-alias lst="lsd --tree"
-alias o="open"
-alias n="nano"
-alias v="vim"
-alias rm="trash"
-alias tr="tree"
 
-# dev
-alias g="git"
-alias cps="composer"
-alias vl="valet"
-alias dc="docker"
-alias dcc="docker-compose"
-alias ldc="lazydocker"
+# Reload the current shell session.
+alias reload="exec ${SHELL} -l"
 
-# network
-alias allo="ping -c 3 www.google.com"
-alias hosts="plz nano /etc/hosts"
-alias local_ip='ipconfig getifaddr en0'
-alias public_ip4='curl -4 ifconfig.me; echo'
-alias public_ip6='curl -6 ifconfig.me; echo'
-alias flush_dns="plz dscacheutil -flushcache; plz killall -HUP mDNSResponder"
-
-# ssh
-alias sshconfig="nano ~/.ssh/config"
-
-# shell
-alias reload="exec $SHELL -l"
+# Reload the Zsh configuration.
 alias zz="source $HOME/.zshrc"
 
-# helpers
-alias mkdir="mkdir -p"
-alias path="echo -e ${PATH//:/\\n}"
-alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
+# Display each entry in the $PATH variable on a new line.
+alias path='echo -e ${PATH//:/\\n}'
 
-# system
-alias show_hidden="defaults write com.apple.finder AppleShowAllFiles -bool true && kill_finder"
-alias hide_hidden="defaults write com.apple.finder AppleShowAllFiles -bool false && kill_finder"
-alias show_desktop="defaults write com.apple.finder CreateDesktop -bool true && kill_finder"
-alias hide_desktop="defaults write com.apple.finder CreateDesktop -bool false && kill_finder"
-alias kill_bar="killall SystemUIServer"
-alias kill_dock="killall Dock"
-alias kill_finder="killall Finder"
+# Replace `cat` with `bat`, a syntax-highlighted file viewer.
+alias cat="bat"
+
+# Use `lsd` (a modern `ls` replacement) for better visuals.
+alias ls="lsd"
+
+# Display directories in a tree-like structure using `lsd`.
+alias lst="lsd --tree"
+
+# Replace the `rm` command with `trash`, which moves files to the trash instead of deleting them permanently.
+alias rm="trash"
+
+# Ensure `mkdir` creates parent directories by default.
+alias mkdir="mkdir -p"
+
+# Open PhpStorm in current directory.
+alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
+
+#####################################################################################
+# Shortcuts
+#####################################################################################
+
+# Open the SSH configuration file for editing.
+alias sshconfig="plz nano ~/.ssh/config"
+
+# Open the `/etc/hosts` file for editing.
+alias hosts="plz nano /etc/hosts"
+
+# Open the `~/.setup` directory for editing.
+alias setup="code $SETUP"
+
+#####################################################################################
+# Network
+#####################################################################################
+
+# Quickly ping Google to check network connectivity.
+alias allo="ping -c 3 www.google.com"
+
+# Print the local IP address for the current network interface.
+alias localip='ipconfig getifaddr en0'
+
+# Print the public IPv4 address.
+alias publicip4='curl -4 ifconfig.me; echo'
+
+# Print the public IPv6 address.
+alias public_ip6='curl -6 ifconfig.me; echo'
+
+# Flush the DNS cache and restart the mDNSResponder service on macOS.
+alias flushdns="plz dscacheutil -flushcache; plz killall -HUP mDNSResponder"
+
+#####################################################################################
+# System
+#####################################################################################
+
+# Open the current directory in Finder.
+alias finder="open ."
+
+# Kill specific macOS system processes.
+alias killbar="killall SystemUIServer"
+alias killdock="killall Dock"
+alias killfinder="killall Finder"
+
+# Show/hide desktop icons in Finder.
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killfinder"
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killfinder"
+
+# Show/hide hidden files in Finder.
+alias showhidden="defaults write com.apple.finder AppleShowAllFiles -bool true && killfinder"
+alias hidehidden="defaults write com.apple.finder AppleShowAllFiles -bool false && killfinder"
+
+# Remove `.DS_Store` files recursively from the current directory.
+alias cleands="find . -type f -name '*.DS_Store' -ls -delete"
+
+# Clear system caches and free up memory.
+alias clean="rm -rf ~/Library/Caches/* && sudo purge"
+
+# Display the macOS system version.
 alias swv="sw_vers"
+
+# Update macOS software and system tools.
 alias update='plz softwareupdate -i -a'
-alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
+# Lock the screen immediately.
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Put the system to sleep.
 alias sleep='pmset sleepnow'
+
+# Reboot the system.
 alias reboot='plz shutdown -r now'
+
+# Shut down the system.
 alias shutdown='plz shutdown -h now'

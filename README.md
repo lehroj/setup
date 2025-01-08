@@ -1,38 +1,50 @@
 # 💻 Setup
 
-> Personal macOS setup, use at your own risk!
+> Automated macOS development environment setup for personal use.
+<br>
+> **Use at your own risk!**
+
+This repository provides scripts and configurations to quickly set up a macOS environment for development.
 
 ## First run
 
-Get your apps from the App Store.
+1. Install apps from the App Store.
+2. Run the following commands step by step:
 
 ```bash
-# ZSH as default shell
+# Set ZSH as the default shell
 chsh -s /bin/zsh $USER
 
-# Homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Install Homebrew (if not already installed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Setup
+# Clone this repository
 export SETUP="$HOME/.setup"
-
 git clone https://github.com/lehroj/setup.git $SETUP
 
+# Source the main setup script
 source $SETUP/scripts/my.zsh
+```
 
-# Install libs & apps
+3. Install libs and apps from Homebrew  (careful, password may be ask):
+
+```bash
 my install
 # or separately
 my install --brew
-my install --vscode
+my install --vsc
 # I suggest you check each step went correctly.
+```
 
-# SSH key
+4. Create SSH/GPG keys:
+
+```bash
+# SSH key(s)
 ssh-keygen -t ed25519 -C YOUR_EMAIL
 cat $HOME/.ssh/YOUR_KEY.pub | pbcopy
 # Paste it on GitHub/GitLab/Bitbucket...
 
-# GPG key
+# GPG key(s)
 gpg --full-generate-key
 gpg --list-secret-keys --keyid-format LONG
 gpg --armor --export GPG_KEY_ID | pbcopy
@@ -44,31 +56,59 @@ gpg --armor --export GPG_KEY_ID | pbcopy
 # Restart GPG agent
 gpgconf --kill gpg-agent
 gpgconf --launch gpg-agent
+```
 
-# Create your .git_perso in $SETUP/dotfiles/git/.git_perso
-# For example :
+5. Complete your Git configuration with adding your keys:
+
+```bash
+# $SETUP/dotfiles/git/.git_local
+[includeIf "gitdir:~/Perso/"]
+  path = ~/.git_perso
+
+[includeIf "gitdir:~/Work/"]
+  path = ~/.git_work
+
+# This file (.git_local) is intentionally not versioned for privacy reasons.
+```
+
+```bash
+# $SETUP/dotfiles/git/.git_perso|work
 [user]
-  name = XXX
-  email = XXX
+  name = YOUR_NAME
+  email = YOUR_EMAIL
   signinkey = GPG_KEY_ID
 
-# Symlink configurations
-my config
+# These files (.git_perso, .git_work) are intentionally not versioned for privacy reasons.
+```
+
+6. Complete your Zsh configuration with .zsh_local (optional):
+
+```bash
+# $SETUP/dotfiles/zsh/.zsh_local
+# All you want here, aliases, functions...
+# This file (.zsh_local) is intentionally not versioned for privacy reasons.
+```
+
+7. Symlink your configuration:
+
+```bash
+my dotfiles
 # or separately
-my config --zsh
-my config --git
-my config --term
-my config --vscode
+my dotfiles --git
+my dotfiles --misc
+my dotfiles --zsh
 # I suggest you check each step went correctly.
 
-# ZSH configuration
+# Load Zsh configuration
 source $HOME/.zshrc
 
-# Shell reload
+# Reload shell
 exec $SHELL -l
 ```
 
 ## Sometimes
+
+Run these commands periodically to keep your setup clean and up-to-date.
 
 ```bash
 # Homebrew
@@ -84,10 +124,10 @@ rm -rf "$(brew --cache)"
 my backup
 # or separately
 my backup --brew
-my backup --vscode
+my backup --vsc
 # I suggest you check each step went correctly.
 
-# Antidote
+# Antidote (fast and minimal Zsh plugin manager)
 antidote update
 ```
 
