@@ -1,8 +1,6 @@
 # 💻 Setup
 
-> Automated macOS development environment setup for personal use.
-<br>
-> **Use at your own risk!**
+> macOS development environment setup for personal use. Use at your own risk!
 
 This repository provides scripts and configurations to quickly set up a macOS environment for development.
 
