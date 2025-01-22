@@ -66,6 +66,14 @@ alias public_ip6='curl -6 ifconfig.me; echo'
 # Flush the DNS cache and restart the mDNSResponder service on macOS.
 alias flushdns="plz dscacheutil -flushcache; plz killall -HUP mDNSResponder"
 
+# Displays the processes using a specific port.
+# Example: port-lsof :80
+alias port-lsof='sudo lsof -i'
+
+# Kills a process using its PID.
+# Example: port-kill 8150
+alias port-kill='sudo kill -9'
+
 #####################################################################################
 # System
 #####################################################################################
